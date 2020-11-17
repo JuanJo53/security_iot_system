@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "681313495858",
+    "firebase_url": "https://securitysystemiot-bcf07.firebaseio.com",
+    "project_id": "securitysystemiot-bcf07",
+    "storage_bucket": "securitysystemiot-bcf07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681313495858:android:2f68aa72e1f98fa027c52b",
+        "android_client_info": {
+          "package_name": "com.example.security_iot_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "681313495858-bnlbmf4aq1kub6106u7ahocgtjgolkdq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.security_iot_system",
+            "certificate_hash": "2fd23239fd185a700cd68f74880fb663533f2aa0"
+          }
+        },
+        {
+          "client_id": "681313495858-h5onpm7bvd790s0vq66otn4f6f0acl7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCObv54jyHl6F0Z1EVxPZx7UgJZ4sLJ9oE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "681313495858-h5onpm7bvd790s0vq66otn4f6f0acl7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
