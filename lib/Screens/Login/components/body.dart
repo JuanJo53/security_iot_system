@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:security_iot_system/Screens/Home/home_screen.dart';
 import 'package:security_iot_system/Screens/SignUp/signup_screen.dart';
 import 'package:security_iot_system/Screens/Welcome/components/background.dart';
 import 'package:security_iot_system/components/already_have_an_account_acheck.dart';
@@ -45,7 +46,16 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "INGRESAR",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return HomeScreen();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
