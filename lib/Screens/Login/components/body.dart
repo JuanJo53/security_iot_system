@@ -3,11 +3,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:security_iot_system/Screens/Home/home_screen.dart';
 import 'package:security_iot_system/Screens/SignUp/signup_screen.dart';
 import 'package:security_iot_system/Screens/Welcome/components/background.dart';
+import 'package:security_iot_system/Services/authentication_service.dart';
 import 'package:security_iot_system/components/already_have_an_account_acheck.dart';
 import 'package:security_iot_system/components/rounded_button.dart';
 import 'package:security_iot_system/components/rounded_input_field.dart';
 import 'package:security_iot_system/components/rounded_password_field.dart';
 import 'package:security_iot_system/constants.dart';
+import 'package:provider/provider.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -17,6 +19,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    String email, password;
     return Background(
       child: SingleChildScrollView(
         child: Column(
@@ -39,22 +42,23 @@ class Body extends StatelessWidget {
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
               hintText: "Tu Correo",
-              onChanged: (value) {},
+              onChanged: (String value) {
+                email = value;
+              },
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (String value) {
+                password = value;
+              },
             ),
             RoundedButton(
               text: "INGRESAR",
               press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return HomeScreen();
-                    },
-                  ),
+                context.read<AuthenticationService>().signIn(
+                  email: email,
+                  password: password
                 );
+
               },
             ),
             SizedBox(height: size.height * 0.03),
