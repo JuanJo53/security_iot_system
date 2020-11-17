@@ -11,7 +11,7 @@ class Body extends StatelessWidget {
       child: Column(
         children: <Widget>[
           ImageAndIcons(size: size),
-          TitleAndPrice(title: "Angelica", country: "Russia", price: 440),
+          TitleAndPrice(title: "Carlos", country: "Casa 1", price: false),
           SizedBox(height: kDefaultPadding),
           Row(
             children: <Widget>[
@@ -27,7 +27,7 @@ class Body extends StatelessWidget {
                   color: kPrimaryColor,
                   onPressed: () {},
                   child: Text(
-                    "Buy Now",
+                    "Encender",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -38,7 +38,7 @@ class Body extends StatelessWidget {
               Expanded(
                 child: FlatButton(
                   onPressed: () {},
-                  child: Text("Description"),
+                  child: Text("Apagar"),
                 ),
               ),
             ],

@@ -38,10 +38,30 @@ class ImageAndIcons extends StatelessWidget {
                       ),
                     ),
                     Spacer(),
-                    IconCard(icon: "assets/icons/sun.svg"),
+                    Icon(
+                      Icons.supervised_user_circle,
+                      color: kPrimaryColor,
+                      size: 48.0,
+                    ),
+                    Icon(
+                      Icons.supervised_user_circle,
+                      color: kPrimaryColor,
+                      size: 48.0,
+                    ),
+                    Icon(
+                      Icons.supervised_user_circle,
+                      color: kPrimaryColor,
+                      size: 48.0,
+                    ),
+                    Icon(
+                      Icons.supervised_user_circle,
+                      color: kPrimaryColor,
+                      size: 48.0,
+                    ),
+                    /*IconCard(icon: "assets/icons/sun.svg"),
                     IconCard(icon: "assets/icons/icon_2.svg"),
                     IconCard(icon: "assets/icons/icon_3.svg"),
-                    IconCard(icon: "assets/icons/icon_4.svg"),
+                    IconCard(icon: "assets/icons/icon_4.svg"),*/
                   ],
                 ),
               ),
@@ -64,7 +84,7 @@ class ImageAndIcons extends StatelessWidget {
                 image: DecorationImage(
                   alignment: Alignment.centerLeft,
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/images/img.png"),
+                  image: AssetImage("assets/images/q12w.jpg"),
                 ),
               ),
             ),

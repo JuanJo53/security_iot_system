@@ -11,7 +11,7 @@ class TitleAndPrice extends StatelessWidget {
   }) : super(key: key);
 
   final String title, country;
-  final int price;
+  final bool price;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class TitleAndPrice extends StatelessWidget {
           ),
           Spacer(),
           Text(
-            "\$$price",
+            "$price",
             style: Theme.of(context)
                 .textTheme
                 .headline5
