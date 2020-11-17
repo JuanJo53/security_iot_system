@@ -6,6 +6,7 @@ import 'package:security_iot_system/components/already_have_an_account_acheck.da
 import 'package:security_iot_system/components/rounded_button.dart';
 import 'package:security_iot_system/components/rounded_input_field.dart';
 import 'package:security_iot_system/components/rounded_password_field.dart';
+import 'package:security_iot_system/constants.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -21,24 +22,29 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "LOGIN",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              "INGRESO CON CREDENCIALESS",
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
             SizedBox(height: size.height * 0.03),
-            SvgPicture.asset(
+            /*SvgPicture.asset(
               "assets/icons/login.svg",
               height: size.height * 0.35,
+            ),*/
+            Icon(
+              Icons.supervised_user_circle,
+              color: kPrimaryColor,
+              size: 300.0,
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
-              hintText: "Your Email",
+              hintText: "Tu Correo",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
               onChanged: (value) {},
             ),
             RoundedButton(
-              text: "LOGIN",
+              text: "INGRESAR",
               press: () {},
             ),
             SizedBox(height: size.height * 0.03),

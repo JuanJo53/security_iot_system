@@ -6,6 +6,7 @@ import 'package:security_iot_system/components/already_have_an_account_acheck.da
 import 'package:security_iot_system/components/rounded_button.dart';
 import 'package:security_iot_system/components/rounded_input_field.dart';
 import 'package:security_iot_system/components/rounded_password_field.dart';
+import 'package:security_iot_system/constants.dart';
 
 import 'background.dart';
 import 'or_divider.dart';
@@ -21,22 +22,27 @@ class Body extends StatelessWidget {
           children: <Widget>[
             Text(
               "SIGNUP",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,color: logoHome),
             ),
             SizedBox(height: size.height * 0.03),
-            SvgPicture.asset(
+            /*SvgPicture.asset(
               "assets/icons/signup.svg",
               height: size.height * 0.35,
+            ),*/
+            Icon(
+              Icons.app_registration,
+              color: Colors.white,
+              size: 200.0,
             ),
             RoundedInputField(
-              hintText: "Your Email",
+              hintText: "Tu Correo",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
               onChanged: (value) {},
             ),
             RoundedButton(
-              text: "SIGNUP",
+              text: "REGISTRARSE",
               press: () {},
             ),
             SizedBox(height: size.height * 0.03),
@@ -57,15 +63,15 @@ class Body extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SocalIcon(
+                SocialIcon(
                   iconSrc: "assets/icons/facebook.svg",
                   press: () {},
                 ),
-                SocalIcon(
+                SocialIcon(
                   iconSrc: "assets/icons/twitter.svg",
                   press: () {},
                 ),
-                SocalIcon(
+                SocialIcon(
                   iconSrc: "assets/icons/google-plus.svg",
                   press: () {},
                 ),

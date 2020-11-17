@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:security_iot_system/Screens/Facial/facial_screen.dart';
 import 'package:security_iot_system/Screens/Login/login_screen.dart';
 import 'package:security_iot_system/Screens/Welcome/components/background.dart';
 import 'package:security_iot_system/components/rounded_button.dart';
@@ -16,16 +17,39 @@ class Body extends StatelessWidget {
           children: <Widget>[
             Text(
               "SAFE SMARTHOME",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25.0,
+                  color: Colors.white),
             ),
             SizedBox(height: size.height * 0.03),
-            SvgPicture.asset(
+            /*SvgPicture.asset(
               "assets/icons/chat.svg",
               height: size.height * 0.45,
+            ),*/
+            Icon(
+              Icons.security,
+              color: kPrimaryColor,
+              size: 300.0,
             ),
             SizedBox(height: size.height * 0.03),
             RoundedButton(
-              text: "LOGIN",
+              text: "Reconocimiento Facial",
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Rec_Facial();
+                    },
+                  ),
+                );
+              },
+            ),
+            RoundedButton(
+              text: "Crendenciales",
+              color: kPrimaryLightColor,
+              textColor: Colors.black,
               press: () {
                 Navigator.push(
                   context,
@@ -36,12 +60,6 @@ class Body extends StatelessWidget {
                   ),
                 );
               },
-            ),
-            RoundedButton(
-              text: "LOGIN2",
-              color: kPrimaryLightColor,
-              textColor: Colors.black,
-              press: () {},
             ),
           ],
         ),

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:security_iot_system/constants.dart';
 
-class SocalIcon extends StatelessWidget {
+class SocialIcon extends StatelessWidget {
   final String iconSrc;
   final Function press;
-  const SocalIcon({
+  const SocialIcon({
     Key key,
     this.iconSrc,
     this.press,
@@ -21,7 +21,7 @@ class SocalIcon extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             width: 2,
-            color: kPrimaryLightColor,
+            color: logoHome,
           ),
           shape: BoxShape.circle,
         ),
@@ -29,6 +29,7 @@ class SocalIcon extends StatelessWidget {
           iconSrc,
           height: 20,
           width: 20,
+          color: Colors.white,
         ),
       ),
     );
