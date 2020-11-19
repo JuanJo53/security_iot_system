@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthenticationService{
   final FirebaseAuth _firebaseAuth;
-
+  CollectionReference users = FirebaseFirestore.instance.collection('Users');
   AuthenticationService(this._firebaseAuth);
 
   Stream<User> get authStateChanges => _firebaseAuth.idTokenChanges();
@@ -18,6 +19,10 @@ class AuthenticationService{
   Future<String> signUp({String email, String password})async{
     try{
       await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      users.add({
+        'email': email,
+        'password': password
+      });
       return "Registrado";
     }on FirebaseAuthException catch(e){
       return e.message;
