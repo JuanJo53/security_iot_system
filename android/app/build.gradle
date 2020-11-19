@@ -27,6 +27,12 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
+
+    aaptOptions {
+        noCompress "tflite"
+        noCompress "lite"
+    }
+
     compileSdkVersion 29
 
     sourceSets {
@@ -40,7 +46,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.security_iot_system"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -53,6 +59,10 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    dependencies {
+        api 'com.google.firebase:firebase-ml-vision-face-model:17.0.2'
+    }
 }
 
 flutter {
@@ -62,4 +72,5 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation platform('com.google.firebase:firebase-bom:26.1.0')
+
 }
