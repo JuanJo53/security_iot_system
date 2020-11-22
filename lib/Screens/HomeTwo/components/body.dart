@@ -6,8 +6,8 @@ import '../../../size_config.dart';
 import 'categories.dart';
 import 'discount_banner.dart';
 import 'home_header.dart';
-import 'popular_product.dart';
-import 'special_offers.dart';
+import 'sensores_lib.dart';
+import 'disp_prueba.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -26,33 +26,24 @@ class Body extends StatelessWidget {
                 children: <Widget>[
                   Accionador(
                     image: "assets/images/q12w.jpg",
-                    title: "Crushing & Influence",
-                    auth: "Gary Venchuk",
+                    title: "Foco 1",
+                    auth: "Cuarto A",
                     rating: 4.9,
-                    pressDetails: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return DetailsScreen();
-                          },
-                        ),
-                      );
-                    },
+                    pressDetails: () {},
                   ),
                   Accionador(
                     image: "assets/images/q12w.jpg",
-                    title: "Top Ten Business Hacks",
-                    auth: "Herman Joel",
+                    title: "Foco 2",
+                    auth: "Cuarto B",
                     rating: 4.8,
                   ),
                   SizedBox(width: 30),
                 ],
               ),
             ),
-            SpecialOffers(),
+            DispRec(),
             SizedBox(height: getProportionateScreenWidth(30)),
-            PopularProducts(),
+            SensoresPr(),
             SizedBox(height: getProportionateScreenWidth(30)),
           ],
         ),

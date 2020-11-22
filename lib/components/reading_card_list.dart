@@ -52,21 +52,7 @@ class Accionador extends StatelessWidget {
           Image.asset(
             image,
             width: 150,
-          ),
-          Positioned(
-            top: 35,
-            right: 10,
-            child: Column(
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.favorite_border,
-                  ),
-                  onPressed: () {},
-                ),
-                BookRating(score: rating),
-              ],
-            ),
+            height: 150,
           ),
           Positioned(
             top: 160,
@@ -108,12 +94,12 @@ class Accionador extends StatelessWidget {
                           width: 101,
                           padding: EdgeInsets.symmetric(vertical: 10),
                           alignment: Alignment.center,
-                          child: Text("Details"),
+                          child: Text("ON"),
                         ),
                       ),
                       Expanded(
                         child: TwoSideRoundedButton(
-                          text: "Read",
+                          text: "OFF",
                           press: pressRead,
                         ),
                       )

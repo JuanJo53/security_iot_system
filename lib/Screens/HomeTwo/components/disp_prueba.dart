@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
-class SpecialOffers extends StatelessWidget {
-  const SpecialOffers({
+class DispRec extends StatelessWidget {
+  const DispRec({
     Key key,
   }) : super(key: key);
 
@@ -14,9 +14,9 @@ class SpecialOffers extends StatelessWidget {
       children: [
         Padding(
           padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: SectionTitle(
-            title: "Special for you",
+            title: "Dispositivos Recientes",
             press: () {},
           ),
         ),
@@ -26,14 +26,14 @@ class SpecialOffers extends StatelessWidget {
           child: Row(
             children: [
               SpecialOfferCard(
-                image: "assets/images/Image Banner 2.png",
-                category: "Smartphone",
+                image: "assets/images/q12w.jpg",
+                category: "SERVOMOTOR",
                 numOfBrands: 18,
                 press: () {},
               ),
               SpecialOfferCard(
-                image: "assets/images/Image Banner 3.png",
-                category: "Fashion",
+                image: "assets/images/q12w.jpg",
+                category: "ULTRASONIDO",
                 numOfBrands: 24,
                 press: () {},
               ),
