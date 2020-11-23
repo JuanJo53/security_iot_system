@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:security_iot_system/Screens/Home/home_screen.dart';
 import 'package:security_iot_system/Screens/Login/login_screen.dart';
 import 'package:security_iot_system/Screens/SignUp/components/social_icon.dart';
-import 'package:security_iot_system/Services/authentication_service.dart';
 import 'package:security_iot_system/components/already_have_an_account_acheck.dart';
 import 'package:security_iot_system/components/rounded_button.dart';
 import 'package:security_iot_system/components/rounded_input_field.dart';
@@ -50,10 +49,10 @@ class Body extends StatelessWidget {
             RoundedButton(
               text: "REGISTRARSE",
               press: () {
-                context.read<AuthenticationService>().signUp(
+                /*context.read<AuthenticationService>().signUp(
                   email: email,
                   password: password,
-                );
+                );*/
                 Navigator.push(
                   context,
                   MaterialPageRoute(
