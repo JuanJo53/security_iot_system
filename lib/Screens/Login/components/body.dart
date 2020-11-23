@@ -32,7 +32,7 @@ class Body extends StatelessWidget {
                   "Bienvenido de Nuevo",
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: getProportionateScreenWidth(28),
+                    fontSize: getProportionateScreenWidth(35),
                     fontWeight: FontWeight.bold,
                   ),
                 ),

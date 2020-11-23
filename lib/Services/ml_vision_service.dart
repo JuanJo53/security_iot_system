@@ -1,7 +1,8 @@
-import 'package:FaceNetAuthentication/services/camera.service.dart';
+
 import 'package:camera/camera.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
+import 'package:security_iot_system/Services/camera.service.dart';
 
 class MLVisionService {
   // singleton boilerplate

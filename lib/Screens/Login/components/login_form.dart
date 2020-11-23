@@ -1,7 +1,13 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:security_iot_system/Screens/Facial/facial_screen.dart';
+import 'package:security_iot_system/Screens/Facial/sign-in.dart';
 import 'package:security_iot_system/Screens/HomeTwo/home_two.dart';
+import 'package:security_iot_system/Services/facenet.service.dart';
+import 'package:security_iot_system/Services/ml_vision_service.dart';
 import 'package:security_iot_system/components/custom_surfix_icon.dart';
 import 'package:security_iot_system/components/form_error.dart';
+import 'package:security_iot_system/db/database.dart';
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -17,6 +23,38 @@ class _SignFormState extends State<SignForm> {
   String password;
   bool remember = false;
   final List<String> errors = [];
+
+  FaceNetService _faceNetService = FaceNetService();
+  MLVisionService _mlVisionService = MLVisionService();
+  DataBaseService _dataBaseService = DataBaseService();
+
+  CameraDescription cameraDescription;
+  bool loading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _startUp();
+  }
+
+  _startUp() async {
+    _setLoading(true);
+
+    List<CameraDescription> cameras = await availableCameras();
+    cameraDescription = cameras.firstWhere(
+          (CameraDescription camera) => camera.lensDirection == CameraLensDirection.front,
+    );
+    await _faceNetService.loadModel();
+    await _dataBaseService.loadDB();
+    _mlVisionService.initialize();
+
+    _setLoading(false);
+  }
+  _setLoading(bool value) {
+    setState(() {
+      loading = value;
+    });
+  }
 
   void addError({String error}) {
     if (!errors.contains(error))
@@ -34,14 +72,29 @@ class _SignFormState extends State<SignForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
+    return !loading ? Form(
       key: _formKey,
       child: Column(
         children: [
-          buildEmailFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
-          buildPasswordFormField(),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          //buildEmailFormField(),
+          //SizedBox(height: getProportionateScreenHeight(30)),
+          //buildPasswordFormField(),
+          //SizedBox(height: getProportionateScreenHeight(30)),
+          DefaultButton(
+            text: "Ingresar",
+            press: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    //return HomeTwo();
+                    return SignIn(cameraDescription: cameraDescription);
+                  },
+                ),
+              );
+            },
+          ),
+
           Row(
             children: [
               Checkbox(
@@ -66,25 +119,16 @@ class _SignFormState extends State<SignForm> {
           ),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
-          DefaultButton(
-            text: "Ingresar",
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return HomeTwo();
-                  },
-                ),
-              );
-            },
-          ),
+
         ],
       ),
+    )
+        : Center(
+    child: CircularProgressIndicator(),
     );
   }
 
-  TextFormField buildPasswordFormField() {
+  /*TextFormField buildPasswordFormField() {
     return TextFormField(
       obscureText: true,
       onSaved: (newValue) => password = newValue,
@@ -146,5 +190,5 @@ class _SignFormState extends State<SignForm> {
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
     );
-  }
+  }*/
 }
