@@ -1,7 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:security_iot_system/Screens/Facial/facial_screen.dart';
-import 'package:security_iot_system/Screens/Facial/sign-in.dart';
 import 'package:security_iot_system/Screens/HomeTwo/home_two.dart';
 import 'package:security_iot_system/Services/facenet.service.dart';
 import 'package:security_iot_system/Services/ml_vision_service.dart';
@@ -87,8 +86,7 @@ class _SignFormState extends State<SignForm> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    //return HomeTwo();
-                    return SignIn(cameraDescription: cameraDescription);
+                    return HomeTwo();
                   },
                 ),
               );

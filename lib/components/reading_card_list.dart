@@ -88,13 +88,19 @@ class Accionador extends StatelessWidget {
                   Spacer(),
                   Row(
                     children: <Widget>[
-                      GestureDetector(
+                      /*GestureDetector(
                         onTap: pressDetails,
                         child: Container(
                           width: 101,
                           padding: EdgeInsets.symmetric(vertical: 10),
                           alignment: Alignment.center,
                           child: Text("ON"),
+                        ),
+                      ),*/
+                      Expanded(
+                        child: TwoSideRoundedButton(
+                          text: "ON",
+                          press: pressDetails,
                         ),
                       ),
                       Expanded(
