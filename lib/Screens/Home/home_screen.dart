@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:security_iot_system/Screens/Home/components/body.dart';
 import 'package:security_iot_system/Screens/Login/login_screen.dart';
 import 'package:security_iot_system/components/my_bottom_nav_bar.dart';
-import 'package:security_iot_system/Services/authentication_service.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -22,7 +21,7 @@ class HomeScreen extends StatelessWidget {
       leading: IconButton(
         icon: SvgPicture.asset("assets/icons/menu.svg"),
         onPressed: () {
-          context.read<AuthenticationService>().signOut();
+          //context.read<AuthenticationService>().signOut();
           Navigator.push(
             context,
             MaterialPageRoute(
