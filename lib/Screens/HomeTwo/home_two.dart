@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:security_iot_system/constants.dart';
 
 import 'components/body.dart';
 
@@ -19,12 +20,21 @@ class _HomeTwo extends State<HomeTwo> {
 
   _HomeTwo({this.username});
 
+
+
   final String username;
   static String routeName = "/home";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Body(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          print('Flotante');
+       },
+        child: Icon(Icons.mic),
+        backgroundColor: kPrimaryColor,
+      ),
     );
   }
 }

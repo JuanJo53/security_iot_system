@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:local_auth/auth_strings.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:security_iot_system/Screens/Details/details_screen.dart';
 import 'package:security_iot_system/components/product_card.dart';
 import 'package:security_iot_system/components/reading_card_list.dart';
 import 'package:security_iot_system/components/two_side_rounded_button.dart';
 import 'package:security_iot_system/constants.dart';
 import 'package:security_iot_system/models/Product.dart';
+import 'package:security_iot_system/repository/alarma_repository.dart';
+import 'package:security_iot_system/repository/movesensor_repository.dart';
 import 'package:security_iot_system/repository/rgb_repository.dart';
 import 'package:security_iot_system/repository/temperature_repository.dart';
 
@@ -23,16 +28,60 @@ class SensoresPr extends StatefulWidget{
 class _StateSensoresPr extends State<SensoresPr> {
   RgbRepository rgbRepository = RgbRepository();
   TemperatureRepository temperatureRepository = TemperatureRepository();
+  AlarmaRepository alarmaRepository = AlarmaRepository();
+  MoveSensorRepository moveSensorRepository = MoveSensorRepository();
   double valor;
+  int valorPIR;
   int i = 0;
   Size size;
   var temperatura="";
+  final LocalAuthentication auth = LocalAuthentication();
+  bool _canCheckBiometrics;
+  List<BiometricType> _availableBiometrics;
+  String _authorized = 'Not Authorized';
+  bool _isAuthenticating = false;
+  bool authenticated;
+  bool control = true;
+
+  Future<void> _authenticate() async {
+    authenticated = false;
+    try {
+      setState(() {
+        _isAuthenticating = true;
+        _authorized = 'Authenticating';
+      });
+      authenticated = await auth.authenticateWithBiometrics(
+          androidAuthStrings: AndroidAuthMessages(signInTitle: "Alarma Encedida!",
+          fingerprintHint: "",cancelButton: "Sistema expuesto"),
+          localizedReason: 'Apagar la alarma con la autenticación de huella',
+          useErrorDialogs: true,
+          stickyAuth: true);
+      setState(() {
+        _isAuthenticating = false;
+        _authorized = 'Authenticating';
+      });
+    } on PlatformException catch (e) {
+      print(e);
+    }
+    if (!mounted) return;
+
+    final String message = authenticated ? 'Authorized' : 'Not Authorized';
+    print(message);
+    setState(() {
+      _authorized = message;
+    });
+  }
+
+  void _cancelAuthentication() {
+    auth.stopAuthentication();
+  }
+
   hilo()async{
     valor = await temperatureRepository.estadoTemperature();
     i++;
-    print(i);
+    //print(i);
     if(valor != null){
-      print(valor);
+      //print(valor);
       setState(() {
         temperatura = valor.toString();
       });
@@ -40,10 +89,37 @@ class _StateSensoresPr extends State<SensoresPr> {
     await Future.delayed(Duration(seconds: 1));
     hilo();
   }
+
+  hilo1()async{
+    print('hilo 1');
+    print(control);
+    if(control){
+      print('entra');
+      valorPIR = await moveSensorRepository.estadoSensor();
+      if(valorPIR!=null){
+        if(valorPIR==1){
+          print('Hola');
+           _isAuthenticating ? await _cancelAuthentication() : await _authenticate();
+           if(_authorized=="Authorized"){
+            print('Alarma Apagada cambia a true');
+            control = true;
+          }
+          if(_authorized=="Not Authorized"){
+            print('cambia a false');
+            control = false;
+          }
+        }
+      }
+    }
+    await Future.delayed(Duration(seconds: 1));
+    hilo1();
+  }
+
   @override
   initState(){
     super.initState();
     hilo();
+    hilo1();
   }
   @override
   Widget build(BuildContext context) {
@@ -64,7 +140,15 @@ class _StateSensoresPr extends State<SensoresPr> {
                 title: "SENSOR PIR",
                 auth: "Cuarto A",
                 rating: 4.9,
-                pressDetails: () {},
+                pressDetails: () {
+                  _isAuthenticating ? _cancelAuthentication() : _authenticate();
+                  //print("esta autenticado: "+_isAuthenticating.toString());
+                  /*if(authenticated){
+                    print('Alarma Apagada');
+                    alarmaRepository.estadoAlarma(0);
+                    control = true;
+                  }*/
+                },
               ),
               /*Accionador(
                 image: "assets/images/q12w.jpg",

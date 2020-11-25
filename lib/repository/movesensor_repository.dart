@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:http/http.dart' as http;
 
-class TemperatureRepository{
-  Future<double> estadoTemperature() async{
-    String url = "http://blynk-cloud.com/QWI85H-jllIzyH1nTr2rqSH-njVuciR0/get/A0";
+class MoveSensorRepository{
+  Future<int> estadoSensor() async{
+    String url = "http://blynk-cloud.com/QWI85H-jllIzyH1nTr2rqSH-njVuciR0/get/V5";
     try{
       var res = await http.get(url,
         headers: <String, String>{
@@ -13,9 +12,9 @@ class TemperatureRepository{
         },
       );
       var t = jsonDecode(res.body);
-      double valor = double.parse(t[0]);
+      int valor = int.parse(t[0]);
       if(res.statusCode==200){
-        //print("Done");
+        print('Estado: '+valor.toString());
         return valor;
       }else{
         return null;
