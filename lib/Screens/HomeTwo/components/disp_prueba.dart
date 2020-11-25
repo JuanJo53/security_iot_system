@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:security_iot_system/repository/servomotor_repository.dart';
 
 import '../../../size_config.dart';
 import 'section_title.dart';
+class DispRec extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _StateDispRec();
+  }
 
-class DispRec extends StatelessWidget {
-  const DispRec({
-    Key key,
-  }) : super(key: key);
+
+}
+class _StateDispRec extends State<DispRec> {
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +37,6 @@ class DispRec extends StatelessWidget {
                 numOfBrands: 18,
                 press: () {},
               ),
-              SpecialOfferCard(
-                image: "assets/images/q12w.jpg",
-                category: "ULTRASONIDO",
-                numOfBrands: 24,
-                press: () {},
-              ),
               SizedBox(width: getProportionateScreenWidth(20)),
             ],
           ),
@@ -45,72 +45,117 @@ class DispRec extends StatelessWidget {
     );
   }
 }
+class SpecialOfferCard extends StatefulWidget{
 
-class SpecialOfferCard extends StatelessWidget {
-  const SpecialOfferCard({
+  final String category, image;
+  final int numOfBrands;
+  final GestureTapCallback press;
+  SpecialOfferCard({
     Key key,
     @required this.category,
     @required this.image,
     @required this.numOfBrands,
     @required this.press,
   }) : super(key: key);
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _StateSpecialOfferCard(this.category,this.image,this.numOfBrands,this.press);
+  }
+
+}
+class _StateSpecialOfferCard extends State<SpecialOfferCard> {
+  _StateSpecialOfferCard(
+    this.category,
+    this.image,
+    this.numOfBrands,
+    this.press,
+  );
+
+
+  ServomotorRepository servomotorRepository = ServomotorRepository();
 
   final String category, image;
   final int numOfBrands;
   final GestureTapCallback press;
+  bool state = false;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
-      child: GestureDetector(
-        onTap: press,
-        child: SizedBox(
-          width: getProportionateScreenWidth(242),
-          height: getProportionateScreenWidth(100),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Stack(
-              children: [
-                Image.asset(
-                  image,
-                  fit: BoxFit.cover,
+      child: SizedBox(
+        width: getProportionateScreenWidth(242),
+        height: getProportionateScreenWidth(110),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Stack(
+            children: [
+              Image.asset(
+                image,
+                fit: BoxFit.cover,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xFF343434).withOpacity(0.4),
+                      Color(0xFF343434).withOpacity(0.15),
+                    ],
+                  ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xFF343434).withOpacity(0.4),
-                        Color(0xFF343434).withOpacity(0.15),
-                      ],
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: getProportionateScreenWidth(15.0),
+                      vertical: getProportionateScreenWidth(10),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: getProportionateScreenWidth(15.0),
-                    vertical: getProportionateScreenWidth(10),
-                  ),
-                  child: Text.rich(
-                    TextSpan(
-                      style: TextStyle(color: Colors.white),
-                      children: [
-                        TextSpan(
-                          text: "$category\n",
-                          style: TextStyle(
-                            fontSize: getProportionateScreenWidth(18),
-                            fontWeight: FontWeight.bold,
+                    child: Text.rich(
+                      TextSpan(
+                        style: TextStyle(color: Colors.white),
+                        children: [
+                          TextSpan(
+                            text: "$category\n",
+                            style: TextStyle(
+                              fontSize: getProportionateScreenWidth(18),
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        TextSpan(text: "$numOfBrands Brands")
-                      ],
+                          TextSpan(text: "$numOfBrands Brands")
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      //horizontal: getProportionateScreenWidth(50.0),
+                      //vertical: getProportionateScreenWidth(10),
+                    ),
+                    child: Switch(
+                      value: state,
+                      onChanged: (bool s){
+                        setState((){
+                          state = s;
+                          print(state);
+                          if(state){
+                            print('Encendiendo');
+                            servomotorRepository.estadoServomotor(1);
+                          }else{
+                            print('Apagando');
+                            servomotorRepository.estadoServomotor(0);
+                          }
+                        });
+                      },
+                      activeColor: Colors.indigo,
+                    ),
+                  )
+                ],
+              )
+            ],
           ),
         ),
       ),
