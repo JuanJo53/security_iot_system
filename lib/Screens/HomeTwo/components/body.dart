@@ -11,7 +11,16 @@ import 'home_header.dart';
 import 'sensores_lib.dart';
 import 'disp_prueba.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _Body();
+  }
+
+}
+
+class _Body extends State<Body> {
 
   Foco1Repository foco1repository = Foco1Repository();
   Foco2Repository foco2repository = Foco2Repository();
@@ -40,7 +49,7 @@ class Body extends StatelessWidget {
                         foco1repository.estadoFoco1(1023);
                     },
                     pressRead: () {
-                      print('Apagado Foco2  ');
+                      print('Apagado Foco1');
                       foco1repository.estadoFoco1(0);
                     },
                   ),
