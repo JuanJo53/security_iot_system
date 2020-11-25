@@ -16,23 +16,22 @@ int pinR=D0;
 int pinG=D1;
 int pinB=D2;
 int pinPIR=D5;
-Servo servo;
-int pinServo=D6;
-
-int pinBuzzer=D7;
+int pinBuzzer=D6;
+int pinMotor1=D7;
+int pinMotor2=D8;
 
 void setup(){
   Serial.begin(115200);
 
-  servo.attach(12);
-  servo.write(0);
   
   pinMode(pinR,OUTPUT);
   pinMode(pinG,OUTPUT);
   pinMode(pinB,OUTPUT);
   pinMode(pinPIR,INPUT);
   pinMode(pinRele1,OUTPUT);
-  pinMode(pinRele2,OUTPUT);
+  pinMode(pinRele2,OUTPUT);  
+  pinMode(pinMotor1,OUTPUT);
+  pinMode(pinMotor2,OUTPUT);
   pinMode(pinBuzzer, OUTPUT);
   
   connectNetwork();
@@ -83,9 +82,12 @@ void loop(){
   //Open/close door  
   int doorStatus=readIntValue("V6");
   if(doorStatus==0){
-    servo.write(0);
-  }else{
+    closeDoor();
+  }else if(doorStatus==1){
     openDoor();
+  }else{
+    digitalWrite(pinMotor1,LOW);
+    digitalWrite(pinMotor2,LOW);    
   }
   
   //Turn on/off alarm
@@ -214,10 +216,21 @@ void connectNetwork(){
   Serial.println();
   Serial.println("WiFi connected");
 }
-void openDoor(){
-  servo.write(180);
+void closeDoor(){
+  digitalWrite(pinMotor1,LOW);
+  digitalWrite(pinMotor2,HIGH);
   delay(10000);
-  servo.write(0);
+  digitalWrite(pinMotor1,LOW);
+  digitalWrite(pinMotor2,LOW);
+  putValue("2","V6");
+}
+void openDoor(){
+  digitalWrite(pinMotor1,HIGH);
+  digitalWrite(pinMotor2,LOW);
+  delay(10000);
+  digitalWrite(pinMotor1,LOW);
+  digitalWrite(pinMotor2,LOW);
+  putValue("2","V6");
 }
 
 void soundAlarm(){
