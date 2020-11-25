@@ -91,21 +91,21 @@ class _StateSensoresPr extends State<SensoresPr> {
   }
 
   hilo1()async{
-    print('hilo 1');
-    print(control);
+    //print('hilo 1');
+    //print(control);
     if(control){
-      print('entra');
+      //print('entra');
       valorPIR = await moveSensorRepository.estadoSensor();
       if(valorPIR!=null){
         if(valorPIR==1){
-          print('Hola');
+          //print('Hola');
            _isAuthenticating ? await _cancelAuthentication() : await _authenticate();
            if(_authorized=="Authorized"){
-            print('Alarma Apagada cambia a true');
+            //print('Alarma Apagada cambia a true');
             control = true;
           }
           if(_authorized=="Not Authorized"){
-            print('cambia a false');
+            //print('cambia a false');
             control = false;
           }
         }
