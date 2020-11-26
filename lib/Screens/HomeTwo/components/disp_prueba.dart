@@ -21,7 +21,7 @@ class _StateDispRec extends State<DispRec> {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: SectionTitle(
-            title: "Dispositivos Recientes",
+            title: "Puertas",
             press: () {},
           ),
         ),
@@ -31,8 +31,8 @@ class _StateDispRec extends State<DispRec> {
           child: Row(
             children: [
               SpecialOfferCard(
-                image: "assets/images/foco_on.png",
-                category: "SERVOMOTOR",
+                image: "assets/images/gadaje.jpg",
+                category: "Garaje 1",
                 numOfBrands: 18,
                 press: () {},
               ),
@@ -84,15 +84,15 @@ class _StateSpecialOfferCard extends State<SpecialOfferCard> {
     return Padding(
       padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
       child: SizedBox(
-        width: getProportionateScreenWidth(242),
-        height: getProportionateScreenWidth(110),
+        width: getProportionateScreenWidth(300),
+        height: getProportionateScreenWidth(300),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Stack(
             children: [
               Image.asset(
                 image,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -100,7 +100,7 @@ class _StateSpecialOfferCard extends State<SpecialOfferCard> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Color(0xFF343434).withOpacity(0.4),
+                      Color(0xFF343434).withOpacity(0.2),
                       Color(0xFF343434).withOpacity(0.15),
                     ],
                   ),
@@ -124,7 +124,6 @@ class _StateSpecialOfferCard extends State<SpecialOfferCard> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          TextSpan(text: "$numOfBrands Brands")
                         ],
                       ),
                     ),

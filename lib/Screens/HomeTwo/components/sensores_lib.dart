@@ -16,13 +16,12 @@ import 'package:security_iot_system/repository/temperature_repository.dart';
 import '../../../size_config.dart';
 import 'section_title.dart';
 
-class SensoresPr extends StatefulWidget{
+class SensoresPr extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return _StateSensoresPr();
   }
-
 }
 
 class _StateSensoresPr extends State<SensoresPr> {
@@ -34,7 +33,7 @@ class _StateSensoresPr extends State<SensoresPr> {
   int valorPIR;
   int i = 0;
   Size size;
-  var temperatura="";
+  var temperatura = "";
   final LocalAuthentication auth = LocalAuthentication();
   bool _canCheckBiometrics;
   List<BiometricType> _availableBiometrics;
@@ -51,8 +50,10 @@ class _StateSensoresPr extends State<SensoresPr> {
         _authorized = 'Authenticating';
       });
       authenticated = await auth.authenticateWithBiometrics(
-          androidAuthStrings: AndroidAuthMessages(signInTitle: "Alarma Encedida!",
-          fingerprintHint: "",cancelButton: "Sistema expuesto"),
+          androidAuthStrings: AndroidAuthMessages(
+              signInTitle: "Alarma Encedida!",
+              fingerprintHint: "",
+              cancelButton: "Sistema expuesto"),
           localizedReason: 'Apagar la alarma con la autenticación de huella',
           useErrorDialogs: true,
           stickyAuth: true);
@@ -76,11 +77,11 @@ class _StateSensoresPr extends State<SensoresPr> {
     auth.stopAuthentication();
   }
 
-  hilo()async{
+  hilo() async {
     valor = await temperatureRepository.estadoTemperature();
     i++;
     //print(i);
-    if(valor != null){
+    if (valor != null) {
       //print(valor);
       setState(() {
         temperatura = valor.toString();
@@ -90,21 +91,23 @@ class _StateSensoresPr extends State<SensoresPr> {
     hilo();
   }
 
-  hilo1()async{
+  hilo1() async {
     //print('hilo 1');
     //print(control);
-    if(control){
+    if (control) {
       //print('entra');
       valorPIR = await moveSensorRepository.estadoSensor();
-      if(valorPIR!=null){
-        if(valorPIR==1){
+      if (valorPIR != null) {
+        if (valorPIR == 1) {
           //print('Hola');
-           _isAuthenticating ? await _cancelAuthentication() : await _authenticate();
-           if(_authorized=="Authorized"){
+          _isAuthenticating
+              ? await _cancelAuthentication()
+              : await _authenticate();
+          if (_authorized == "Authorized") {
             //print('Alarma Apagada cambia a true');
             control = true;
           }
-          if(_authorized=="Not Authorized"){
+          if (_authorized == "Not Authorized") {
             //print('cambia a false');
             control = false;
           }
@@ -116,11 +119,12 @@ class _StateSensoresPr extends State<SensoresPr> {
   }
 
   @override
-  initState(){
+  initState() {
     super.initState();
     hilo();
     hilo1();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -136,9 +140,9 @@ class _StateSensoresPr extends State<SensoresPr> {
           child: Row(
             children: <Widget>[
               Accionador(
-                image: "assets/images/q12w.jpg",
-                title: "SENSOR PIR",
-                auth: "Cuarto A",
+                image: "assets/images/ala_on.png",
+                title: "",
+                auth: "",
                 rating: 4.9,
                 pressDetails: () {
                   _isAuthenticating ? _cancelAuthentication() : _authenticate();
@@ -183,7 +187,7 @@ class _StateSensoresPr extends State<SensoresPr> {
                       ),
                     ),
                     Image.asset(
-                      "assets/images/q12w.jpg",
+                      "assets/images/termo.png",
                       width: 150,
                       height: 150,
                     ),
@@ -222,8 +226,14 @@ class _StateSensoresPr extends State<SensoresPr> {
                             SizedBox(width: 25),
                             Row(
                               children: [
-                                Text("Temperatura Actual: ",style: TextStyle(color: kPrimaryColor),),
-                                Text("$temperatura",style: TextStyle(color: Colors.indigo),),
+                                Text(
+                                  "Temperatura Actual: ",
+                                  style: TextStyle(color: kPrimaryColor),
+                                ),
+                                Text(
+                                  "$temperatura",
+                                  style: TextStyle(color: Colors.indigo),
+                                ),
                               ],
                             )
                           ],
@@ -234,43 +244,43 @@ class _StateSensoresPr extends State<SensoresPr> {
                 ),
               ),
               Accionador(
-                image: "assets/images/q12w.jpg",
+                image: "assets/images/redled.png",
                 title: "RGB Rojo",
                 auth: "Cuarto C",
                 rating: 4.8,
-                pressDetails: (){
+                pressDetails: () {
                   print('Rojo encendido');
                   rgbRepository.estadoRgbRojo(255);
                 },
-                pressRead: (){
+                pressRead: () {
                   print('Rojo apagado');
                   rgbRepository.estadoRgbRojo(0);
                 },
               ),
               Accionador(
-                image: "assets/images/q12w.jpg",
+                image: "assets/images/greeled.png",
                 title: "RGB Verde",
                 auth: "Cuarto C",
                 rating: 4.8,
-                pressDetails: (){
+                pressDetails: () {
                   print('Verde encendido');
                   rgbRepository.estadoRgbVerde(255);
                 },
-                pressRead: (){
+                pressRead: () {
                   print('Verde apagado');
                   rgbRepository.estadoRgbVerde(0);
                 },
               ),
               Accionador(
-                image: "assets/images/q12w.jpg",
+                image: "assets/images/bluled.png",
                 title: "RGB Azul",
                 auth: "Cuarto C",
                 rating: 4.8,
-                pressDetails: (){
+                pressDetails: () {
                   print('Azul encendido');
                   rgbRepository.estadoRgbAzul(255);
                 },
-                pressRead: (){
+                pressRead: () {
                   print('Azul apagado');
                   rgbRepository.estadoRgbAzul(0);
                 },
