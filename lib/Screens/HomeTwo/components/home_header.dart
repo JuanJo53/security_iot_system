@@ -22,11 +22,6 @@ class HomeHeader extends StatelessWidget {
             svgSrc: "assets/icons/user-icon.svg",
             press: () => {},
           ),
-          IconBtnWithCounter(
-            svgSrc: "assets/icons/user-icon.svg",
-            numOfitem: 3,
-            press: () {},
-          ),
         ],
       ),
     );

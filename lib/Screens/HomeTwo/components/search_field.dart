@@ -11,7 +11,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: SizeConfig.screenWidth * 0.6,
+      width: SizeConfig.screenWidth * 0.7,
       decoration: BoxDecoration(
         color: kPrimaryColor.withOpacity(0.1),
         borderRadius: BorderRadius.circular(15),
@@ -25,7 +25,7 @@ class SearchField extends StatelessWidget {
             border: InputBorder.none,
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
-            hintText: "Search product",
+            hintText: "",
             prefixIcon: Icon(Icons.search)),
       ),
     );

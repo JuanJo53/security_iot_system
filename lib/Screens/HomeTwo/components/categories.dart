@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:security_iot_system/constants.dart';
 
 import '../../../size_config.dart';
 
@@ -7,11 +8,11 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories = [
-      {"icon": "assets/icons/twitter.svg", "text": "Cuarto A"},
-      {"icon": "assets/icons/twitter.svg", "text": "Cuarto B"},
-      {"icon": "assets/icons/twitter.svg", "text": "Cuarto D"},
-      {"icon": "assets/icons/twitter.svg", "text": "Cuarto E"},
-      {"icon": "assets/icons/twitter.svg", "text": "Cuarto F"},
+      {"icon": "assets/icons/menu.svg", "text": "Room A"},
+      {"icon": "assets/icons/menu.svg", "text": "Room B"},
+      {"icon": "assets/icons/menu.svg", "text": "Room C"},
+      {"icon": "assets/icons/menu.svg", "text": "Room D"},
+      {"icon": "assets/icons/menu.svg", "text": "Room E"},
     ];
     return Padding(
       padding: EdgeInsets.all(getProportionateScreenWidth(20)),
@@ -55,7 +56,7 @@ class CategoryCard extends StatelessWidget {
               height: getProportionateScreenWidth(55),
               width: getProportionateScreenWidth(55),
               decoration: BoxDecoration(
-                color: Color(0xFFFFECDF),
+                color: kPrimaryLightColor,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: SvgPicture.asset(icon),
