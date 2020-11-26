@@ -11,17 +11,15 @@ import 'home_header.dart';
 import 'sensores_lib.dart';
 import 'disp_prueba.dart';
 
-class Body extends StatefulWidget{
+class Body extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return _Body();
   }
-
 }
 
 class _Body extends State<Body> {
-
   Foco1Repository foco1repository = Foco1Repository();
   Foco2Repository foco2repository = Foco2Repository();
 
@@ -40,13 +38,13 @@ class _Body extends State<Body> {
               child: Row(
                 children: <Widget>[
                   Accionador(
-                    image: "assets/images/q12w.jpg",
+                    image: "assets/images/foco_on.png",
                     title: "Foco 1",
                     auth: "Cuarto A",
                     rating: 4.9,
                     pressDetails: () {
                       print('Encendido Foco1');
-                        foco1repository.estadoFoco1(1023);
+                      foco1repository.estadoFoco1(1023);
                     },
                     pressRead: () {
                       print('Apagado Foco1');
@@ -54,15 +52,15 @@ class _Body extends State<Body> {
                     },
                   ),
                   Accionador(
-                    image: "assets/images/q12w.jpg",
+                    image: "assets/images/foco_on.png",
                     title: "Foco 2",
                     auth: "Cuarto B",
                     rating: 4.8,
-                    pressDetails: (){
+                    pressDetails: () {
                       print('Encendido Foco2');
                       foco2repository.estadoFoco2(1023);
                     },
-                    pressRead: (){
+                    pressRead: () {
                       print('Apagado Foco2');
                       foco2repository.estadoFoco2(0);
                     },

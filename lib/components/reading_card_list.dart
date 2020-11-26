@@ -25,9 +25,9 @@ class Accionador extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 24, bottom: 40),
+      margin: EdgeInsets.only(left: 30, bottom: 40),
       height: 245,
-      width: 202,
+      width: 200,
       child: Stack(
         children: <Widget>[
           Positioned(
@@ -35,7 +35,7 @@ class Accionador extends StatelessWidget {
             left: 0,
             right: 0,
             child: Container(
-              height: 221,
+              height: 250,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(29),
@@ -51,8 +51,8 @@ class Accionador extends StatelessWidget {
           ),
           Image.asset(
             image,
-            width: 150,
-            height: 150,
+            width: 200,
+            height: 200,
           ),
           Positioned(
             top: 160,

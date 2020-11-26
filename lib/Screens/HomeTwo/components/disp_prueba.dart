@@ -3,17 +3,16 @@ import 'package:security_iot_system/repository/servomotor_repository.dart';
 
 import '../../../size_config.dart';
 import 'section_title.dart';
-class DispRec extends StatefulWidget{
+
+class DispRec extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return _StateDispRec();
   }
-
-
 }
-class _StateDispRec extends State<DispRec> {
 
+class _StateDispRec extends State<DispRec> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,7 +31,7 @@ class _StateDispRec extends State<DispRec> {
           child: Row(
             children: [
               SpecialOfferCard(
-                image: "assets/images/q12w.jpg",
+                image: "assets/images/foco_on.png",
                 category: "SERVOMOTOR",
                 numOfBrands: 18,
                 press: () {},
@@ -45,8 +44,8 @@ class _StateDispRec extends State<DispRec> {
     );
   }
 }
-class SpecialOfferCard extends StatefulWidget{
 
+class SpecialOfferCard extends StatefulWidget {
   final String category, image;
   final int numOfBrands;
   final GestureTapCallback press;
@@ -60,10 +59,11 @@ class SpecialOfferCard extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _StateSpecialOfferCard(this.category,this.image,this.numOfBrands,this.press);
+    return _StateSpecialOfferCard(
+        this.category, this.image, this.numOfBrands, this.press);
   }
-
 }
+
 class _StateSpecialOfferCard extends State<SpecialOfferCard> {
   _StateSpecialOfferCard(
     this.category,
@@ -71,7 +71,6 @@ class _StateSpecialOfferCard extends State<SpecialOfferCard> {
     this.numOfBrands,
     this.press,
   );
-
 
   ServomotorRepository servomotorRepository = ServomotorRepository();
 
@@ -132,19 +131,19 @@ class _StateSpecialOfferCard extends State<SpecialOfferCard> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      //horizontal: getProportionateScreenWidth(50.0),
-                      //vertical: getProportionateScreenWidth(10),
-                    ),
+                        //horizontal: getProportionateScreenWidth(50.0),
+                        //vertical: getProportionateScreenWidth(10),
+                        ),
                     child: Switch(
                       value: state,
-                      onChanged: (bool s){
-                        setState((){
+                      onChanged: (bool s) {
+                        setState(() {
                           state = s;
                           print(state);
-                          if(state){
+                          if (state) {
                             print('Encendiendo');
                             servomotorRepository.estadoServomotor(1);
-                          }else{
+                          } else {
                             print('Apagando');
                             servomotorRepository.estadoServomotor(0);
                           }
