@@ -10,9 +10,7 @@ import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'components/body.dart';
 
 class HomeTwo extends StatefulWidget{
-  HomeTwo({Key key, @required this.username}) : super(key: key);
 
-  final String username;
   static String routeName = "/home";
   @override
   State<StatefulWidget> createState() {
