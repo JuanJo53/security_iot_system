@@ -33,6 +33,10 @@ void setup(){
   pinMode(pinMotor1,OUTPUT);
   pinMode(pinMotor2,OUTPUT);
   pinMode(pinBuzzer, OUTPUT);
+  digitalWrite(pinMotor1,LOW);
+  digitalWrite(pinMotor2,LOW);
+  digitalWrite(pinRele1,HIGH);
+  digitalWrite(pinRele2,HIGH);
   
   connectNetwork();
 }
@@ -77,7 +81,7 @@ void loop(){
   //Writting PIR status value to API
   int pirState=getPIRdata();          //Gets PIR sensor status  
   putValue(String(pirState),"V5");
-  Serial.println(readIntValue("V5"));
+  Serial.print("PIR: ");Serial.println(readIntValue("V5"));
   
   //Open/close door  
   int doorStatus=readIntValue("V6");
@@ -91,7 +95,8 @@ void loop(){
   }
   
   //Turn on/off alarm
-  int alarmStatus=readIntValue("V7");
+  int alarmStatus=readIntValue("V7");  
+  Serial.print("Alarma: ");Serial.println(alarmStatus);
   if(alarmStatus==0){
     tone(pinBuzzer,0);
   }
@@ -110,7 +115,7 @@ int readLabaledValue(String label, String pin){
   return response.toInt();
 }
 int readIntValue(String pin){
-  Serial.println(String("Reading value of "+pin));
+//  Serial.println(String("Reading value of "+pin));
   String response;
   if (httpRequest(String("GET /") + auth + "/get/"+pin, "", response)) {
     Serial.print("Value from server: ");
@@ -240,7 +245,6 @@ void soundAlarm(){
     tone(pinBuzzer,0);
     delay(100);    
   }
-  putValue("1","A7");
 }
 void controlRoom(int room, int stat){
   if(stat==HIGH){
@@ -263,14 +267,15 @@ float getLM35data(){
 int getPIRdata(){
   int value= digitalRead(pinPIR); 
   Serial.print("Sensor PIR: ");Serial.println(value);
-  if (value == 1){
+  if (value == 1){    
+    putValue("1","V7");
     digitalWrite(pinR, HIGH);
     delay(500);
     digitalWrite(pinR, LOW);
     delay(500);
-    putValue(String(1),"V7");
     soundAlarm();
   }else{
+    putValue("0","V7");
     digitalWrite(pinR, LOW);
   }
   return value;
