@@ -11,6 +11,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -25,10 +26,12 @@ class _MyAppState extends State<MyApp> {
           create: (_) => AuthenticationService(FirebaseAuth.instance),
         ),
         StreamProvider(
-          create: (context) => context.read<AuthenticationService>().authStateChanges,
+          create: (context) =>
+              context.read<AuthenticationService>().authStateChanges,
         )
-      ] ,
+      ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Secure SmartHome',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -54,6 +57,3 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
     return LoginScreen();
   }
 }
-
-
-
