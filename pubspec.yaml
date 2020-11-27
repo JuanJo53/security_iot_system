@@ -42,6 +42,7 @@ dependencies:
   local_auth: ^0.6.3+4
   speech_to_text: ^3.0.1
   avatar_glow: ^1.2.0
+  fluttertoast: ^7.1.4
 
 dev_dependencies:
   flutter_test:

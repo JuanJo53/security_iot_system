@@ -18,6 +18,7 @@ class Body extends StatelessWidget {
   const Body({
     Key key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -28,7 +29,7 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "INGRESO CON CREDENCIALESS",
+              "INGRESO CON CREDENCIALES",
               style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
             ),
             SizedBox(height: size.height * 0.03),
