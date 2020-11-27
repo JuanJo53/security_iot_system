@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:security_iot_system/Screens/Welcome/welcome_screen.dart';
@@ -13,27 +12,25 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget{
+class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return _MyApp();
   }
-
 }
 
 class _MyApp extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-        title: 'Secure SmartHome',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: WikScreen(),
-      );
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Secure SmartHome',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: WikScreen(),
+    );
   }
 }
-
-
