@@ -53,7 +53,7 @@ class _HomeTwo extends State<HomeTwo> {
       case "apagar foco uno":
         print('Apagar foco uno');
         Fluttertoast.showToast(
-            msg: "Foco 2 Apagado",
+            msg: "Foco 1 Apagado",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM,
             timeInSecForIosWeb: 1,
