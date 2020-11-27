@@ -29,8 +29,16 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
+              "SECURE SMART HOME",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: kPrimaryColor,
+                  fontSize: 25),
+            ),
+            Text(
               "INGRESO CON CREDENCIALES",
-              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: kPrimaryColor),
             ),
             SizedBox(height: size.height * 0.03),
             /*SvgPicture.asset(
@@ -38,7 +46,7 @@ class Body extends StatelessWidget {
               height: size.height * 0.35,
             ),*/
             Icon(
-              Icons.supervised_user_circle,
+              Icons.security,
               color: kPrimaryColor,
               size: 300.0,
             ),
@@ -56,12 +64,11 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "INGRESAR",
-              press: () async{
-                await context.read<AuthenticationService>().signIn(
-                email: email,
-                password: password
-                );
-                if(FirebaseAuth.instance.currentUser!=null){
+              press: () async {
+                await context
+                    .read<AuthenticationService>()
+                    .signIn(email: email, password: password);
+                if (FirebaseAuth.instance.currentUser != null) {
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
@@ -69,7 +76,7 @@ class Body extends StatelessWidget {
                         return MyApp();
                       },
                     ),
-                        (route)=>false,
+                    (route) => false,
                   );
                 }
               },
