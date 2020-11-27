@@ -1,36 +1,59 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:security_iot_system/Screens/Welcome/welcome_screen.dart';
-import 'package:security_iot_system/Screens/wik/wik_screen.dart';
-import 'package:security_iot_system/constants.dart';
-
-import 'Screens/Home/home_screen.dart';
+import 'package:security_iot_system/Screens/HomeTwo/home_two.dart';
 import 'Screens/Login/login_screen.dart';
+import 'Services/authentication_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
-
 class MyApp extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _MyApp();
-  }
+  _MyAppState createState() => _MyAppState();
 }
 
-class _MyApp extends State<MyApp> {
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Secure SmartHome',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationService>(
+          create: (_) => AuthenticationService(FirebaseAuth.instance),
+        ),
+        StreamProvider(
+          create: (context) => context.read<AuthenticationService>().authStateChanges,
+        )
+      ] ,
+      child: MaterialApp(
+        title: 'Secure SmartHome',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: AuthenticationWrapper(),
       ),
-      home: WikScreen(),
     );
   }
 }
+
+class AuthenticationWrapper extends StatefulWidget {
+  @override
+  _AuthenticationWrapperState createState() => _AuthenticationWrapperState();
+}
+
+class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
+  @override
+  Widget build(BuildContext context) {
+    if (FirebaseAuth.instance.currentUser != null) {
+      return HomeTwo();
+    }
+    return LoginScreen();
+  }
+}
+
+
+

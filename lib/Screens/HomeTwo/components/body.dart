@@ -3,6 +3,7 @@ import 'package:security_iot_system/Screens/Details/details_screen.dart';
 import 'package:security_iot_system/components/reading_card_list.dart';
 import 'package:security_iot_system/repository/foco1_repository.dart';
 import 'package:security_iot_system/repository/foco2_repository.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../size_config.dart';
 import 'categories.dart';
@@ -25,6 +26,7 @@ class _Body extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -44,10 +46,28 @@ class _Body extends State<Body> {
                     rating: 4.9,
                     pressDetails: () {
                       print('Encendido Foco1');
+                      Fluttertoast.showToast(
+                          msg: "Foco 1 Encendido",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.cyan,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
                       foco1repository.estadoFoco1(1023);
                     },
                     pressRead: () {
                       print('Apagado Foco1');
+                      Fluttertoast.showToast(
+                          msg: "Foco 1 Apagado",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.cyan,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
                       foco1repository.estadoFoco1(0);
                     },
                   ),
@@ -58,10 +78,28 @@ class _Body extends State<Body> {
                     rating: 4.8,
                     pressDetails: () {
                       print('Encendido Foco2');
+                      Fluttertoast.showToast(
+                          msg: "Foco 2 Encendido",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.cyan,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
                       foco2repository.estadoFoco2(1023);
                     },
                     pressRead: () {
                       print('Apagado Foco2');
+                      Fluttertoast.showToast(
+                          msg: "Foco 2 Apagado",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.cyan,
+                          textColor: Colors.white,
+                          fontSize: 16.0
+                      );
                       foco2repository.estadoFoco2(0);
                     },
                   ),

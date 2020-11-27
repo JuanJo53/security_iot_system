@@ -1,5 +1,6 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:security_iot_system/constants.dart';
 import 'package:security_iot_system/repository/foco1_repository.dart';
 import 'package:security_iot_system/repository/foco2_repository.dart';
@@ -10,9 +11,7 @@ import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'components/body.dart';
 
 class HomeTwo extends StatefulWidget{
-  HomeTwo({Key key, @required this.username}) : super(key: key);
 
-  final String username;
   static String routeName = "/home";
   @override
   State<StatefulWidget> createState() {
@@ -40,50 +39,158 @@ class _HomeTwo extends State<HomeTwo> {
     switch(comando){
       case "prender foco uno":
         print('Foco uno prendido');
+        Fluttertoast.showToast(
+            msg: "Foco 1 Encendido",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         foco1repository.estadoFoco1(1023);
         break;
       case "apagar foco uno":
         print('Apagar foco uno');
+        Fluttertoast.showToast(
+            msg: "Foco 1 Apagado",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         foco1repository.estadoFoco1(0);
         break;
       case "prender foco dos":
         print('Foco dos prendido');
+        Fluttertoast.showToast(
+            msg: "Foco 2 Encendido",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         foco2repository.estadoFoco2(1023);
         break;
       case "apagar foco dos":
         print('Apagar foco dos');
+        Fluttertoast.showToast(
+            msg: "Foco 2 Apagado",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         foco2repository.estadoFoco2(0);
         break;
       case "prender motor":
         print('Prende motor');
+        Fluttertoast.showToast(
+            msg: "Motor Encendido",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         servomotorRepository.estadoServomotor(1);
         break;
       case "apagar motor":
         print('Apagar motor');
+        Fluttertoast.showToast(
+            msg: "Motor Apagado",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         servomotorRepository.estadoServomotor(0);
         break;
       case "prender foco rojo":
         print('Prende rojo');
+        Fluttertoast.showToast(
+            msg: "Foco Rojo Encendido",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         rgbRepository.estadoRgbRojo(1);
         break;
       case "apagar foco rojo":
         print('Apagar rojo');
+        Fluttertoast.showToast(
+              msg: "Foco Rojo Apagado",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         rgbRepository.estadoRgbRojo(0);
         break;
       case "prender foco verde":
         print('Prende verde');
+        Fluttertoast.showToast(
+            msg: "Foco Verde Encendido",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         rgbRepository.estadoRgbVerde(1);
         break;
       case "apagar foco verde":
         print('Apagar verde');
+        Fluttertoast.showToast(
+            msg: "Foco Verde Apagado",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         rgbRepository.estadoRgbVerde(0);
         break;
       case "prender foco azul":
         print('Prende azul');
+        Fluttertoast.showToast(
+            msg: "Foco Azul Encendido",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         rgbRepository.estadoRgbAzul(1);
         break;
       case "apagar foco azul":
         print('Apagar azul');
+        Fluttertoast.showToast(
+            msg: "Foco Azul Apagado",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.cyan,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
         rgbRepository.estadoRgbAzul(0);
         break;
     }
@@ -138,6 +245,7 @@ class _HomeTwo extends State<HomeTwo> {
         repeat: true,
         child: FloatingActionButton(
           onPressed: _listen,
+          backgroundColor: kPrimaryColor,
           child: Icon(_isListening ? Icons.mic : Icons.mic_none),
         ),
       ),

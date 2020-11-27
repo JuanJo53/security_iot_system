@@ -1,13 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:security_iot_system/Screens/Home/home_screen.dart';
+import 'package:security_iot_system/Screens/HomeTwo/home_two.dart';
 import 'package:security_iot_system/Screens/Login/login_screen.dart';
 import 'package:security_iot_system/Screens/SignUp/components/social_icon.dart';
+import 'package:security_iot_system/Services/authentication_service.dart';
 import 'package:security_iot_system/components/already_have_an_account_acheck.dart';
 import 'package:security_iot_system/components/rounded_button.dart';
 import 'package:security_iot_system/components/rounded_input_field.dart';
 import 'package:security_iot_system/components/rounded_password_field.dart';
 import 'package:security_iot_system/constants.dart';
 import 'package:provider/provider.dart';
+import '../../../main.dart';
 import 'background.dart';
 import 'or_divider.dart';
 
@@ -48,19 +52,22 @@ class Body extends StatelessWidget {
             ),
             RoundedButton(
               text: "REGISTRARSE",
-              press: () {
-                /*context.read<AuthenticationService>().signUp(
+              press: () async{
+                await context.read<AuthenticationService>().signUp(
                   email: email,
                   password: password,
-                );*/
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return HomeScreen();
-                    },
-                  ),
                 );
+                if(FirebaseAuth.instance.currentUser!=null){
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MyApp();
+                      },
+                    ),
+                        (route)=>false,
+                  );
+                }
               },
             ),
             SizedBox(height: size.height * 0.03),

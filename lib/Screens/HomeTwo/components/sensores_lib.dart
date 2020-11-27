@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:local_auth/auth_strings.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:security_iot_system/Screens/Details/details_screen.dart';
@@ -250,10 +251,28 @@ class _StateSensoresPr extends State<SensoresPr> {
                 rating: 4.8,
                 pressDetails: () {
                   print('Rojo encendido');
+                  Fluttertoast.showToast(
+                      msg: "Foco Rojo Encendido",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.cyan,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
                   rgbRepository.estadoRgbRojo(255);
                 },
                 pressRead: () {
                   print('Rojo apagado');
+                  Fluttertoast.showToast(
+                      msg: "Foco Rojo Apagado",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.cyan,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
                   rgbRepository.estadoRgbRojo(0);
                 },
               ),
@@ -264,10 +283,28 @@ class _StateSensoresPr extends State<SensoresPr> {
                 rating: 4.8,
                 pressDetails: () {
                   print('Verde encendido');
+                  Fluttertoast.showToast(
+                      msg: "Foco Verde Encendido",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.cyan,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
                   rgbRepository.estadoRgbVerde(255);
                 },
                 pressRead: () {
                   print('Verde apagado');
+                  Fluttertoast.showToast(
+                      msg: "Foco Verde Apagado",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.cyan,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
                   rgbRepository.estadoRgbVerde(0);
                 },
               ),
@@ -278,10 +315,28 @@ class _StateSensoresPr extends State<SensoresPr> {
                 rating: 4.8,
                 pressDetails: () {
                   print('Azul encendido');
+                  Fluttertoast.showToast(
+                      msg: "Foco Azul Encendido",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.cyan,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
                   rgbRepository.estadoRgbAzul(255);
                 },
                 pressRead: () {
                   print('Azul apagado');
+                  Fluttertoast.showToast(
+                      msg: "Foco Azul Apagado",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.cyan,
+                      textColor: Colors.white,
+                      fontSize: 16.0
+                  );
                   rgbRepository.estadoRgbAzul(0);
                 },
               ),

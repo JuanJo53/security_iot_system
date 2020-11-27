@@ -2,8 +2,8 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:security_iot_system/Screens/Facial/facial_screen.dart';
 import 'package:security_iot_system/Screens/HomeTwo/home_two.dart';
-import 'package:security_iot_system/Services/facenet.service.dart';
-import 'package:security_iot_system/Services/ml_vision_service.dart';
+// import 'package:security_iot_system/Services/facenet.service.dart';
+// import 'package:security_iot_system/Services/ml_vision_service.dart';
 import 'package:security_iot_system/components/custom_surfix_icon.dart';
 import 'package:security_iot_system/components/form_error.dart';
 import 'package:security_iot_system/db/database.dart';
@@ -23,8 +23,8 @@ class _SignFormState extends State<SignForm> {
   bool remember = false;
   final List<String> errors = [];
 
-  FaceNetService _faceNetService = FaceNetService();
-  MLVisionService _mlVisionService = MLVisionService();
+  // FaceNetService _faceNetService = FaceNetService();
+  // MLVisionService _mlVisionService = MLVisionService();
   DataBaseService _dataBaseService = DataBaseService();
 
   CameraDescription cameraDescription;
@@ -43,9 +43,9 @@ class _SignFormState extends State<SignForm> {
     cameraDescription = cameras.firstWhere(
           (CameraDescription camera) => camera.lensDirection == CameraLensDirection.front,
     );
-    await _faceNetService.loadModel();
+    // await _faceNetService.loadModel();
     await _dataBaseService.loadDB();
-    _mlVisionService.initialize();
+    // _mlVisionService.initialize();
 
     _setLoading(false);
   }
